@@ -10,6 +10,5 @@ public interface ConsultaDadosUsuarios {
 
     UsuarioDtoSaida findById(Long id) throws Exception;
 
-
     byte[] buscarFotoUsuario(Long id) throws UsuarioNaoEncontradoException, IOException;
 }
