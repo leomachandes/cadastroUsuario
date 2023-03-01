@@ -8,6 +8,7 @@ Possiveis melhorias futuras
   * Implementação de segurança;
   * Melhoria do layout do swagger
   * Implementação de versionamento de script sql (FlyWay por exemplo)
+  * Melhorar algumas validações
   
   
   - Nesse projeto tentei aplicar um pouco de tudo que conheço num ambiente java(back-end)
