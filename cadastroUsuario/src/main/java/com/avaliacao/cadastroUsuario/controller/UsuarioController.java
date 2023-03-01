@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -116,6 +118,25 @@ public class UsuarioController {
             log.severe("Erro interno na exclusão: " + e.getMessage());
             return ResponseEntity.internalServerError().body(e);
         }
+
+    }
+
+    @GetMapping(value = "/foto/{id}")
+    public ResponseEntity<?> buscarFotoUsuario(@PathVariable @Min(value = 1, message = "Id precisa ser maior que 0") Long id) {
+        try {
+            byte[] foto = consultarService.buscarFotoUsuario(id);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+            ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(foto, headers, HttpStatus.OK);
+            return responseEntity;
+        }catch (UsuarioNaoEncontradoException ex) {
+            log.warning(ex.getMessage());
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            log.severe("Erro interno na exclusão: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(e);
+        }
+
 
     }
 
