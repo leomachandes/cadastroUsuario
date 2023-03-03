@@ -36,10 +36,6 @@ public class UsuarioController {
     @Autowired
     private AlteraDadosUsuario alteraDadosService;
 
-    @GetMapping("/cadastro")
-    public String teste() {
-        return "Teste";
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarDadosUsuarioPorId(@PathVariable  @Min(value = 1, message = "Id precisa ser maior que 0") Long id) {
